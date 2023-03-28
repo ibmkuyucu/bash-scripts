@@ -2,10 +2,22 @@
 
 isvalidip() #@ USAGE: isvalidip DOTTED-QUAD
 {
-    case $1 in
-        "" | *[!0-9.]* | *[!0-9]) return 1 ;;
+    ip="$1"
+    case $ip in
+        "" | *[!0-9.]* | *[!0-9]) return 5 ;;
     esac
-    local IFS=.
-    set -- $1
-    [ $# -eq 4 ] && [ ${1:-666} -le 255 ] && [ ${2:-666} -le 255 ] && [ ${3:-666} -le 255 ] && [ ${4:-666} -le 255 ]
+    
+    if [[ "${ip//[0-9]/}" == "..." ]]
+    then
+        local first="${ip%%.*}"
+        local last="${ip##*.}"
+        local second="${ip%.*.*}" && second="${second#*.}"
+        local third="${ip#*.*.}" && third="${third%.*}"
+        [ ${first:-666} -le 255 ] || return 1
+        [ ${second:-666} -le 255 ] || return 2
+        [ ${third:-666} -le 255 ] || return 3
+        [ ${last:-666} -le 255 ] || return 4
+    else
+        return 6
+    fi
 }

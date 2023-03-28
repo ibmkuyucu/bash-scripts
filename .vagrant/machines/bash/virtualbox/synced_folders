@@ -1,1 +1,0 @@
-{"virtualbox":{"/home/vagrant/bash":{"owner":"vagrant","group":"vagrant","mount_options":["dmode=755","fmode=755","uid=1000","gid=1000","_netdev"],"guestpath":"/home/vagrant/bash","hostpath":"C:/devops/bash","disabled":false,"__vagrantfile":true}}}
