@@ -2,14 +2,14 @@
 # vi:set ft=ruby sw=2 ts=2 sts=2:
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "debian/buster64"
+  config.vm.box = "debian11"
   config.vm.box_check_update = false
-  # if Vagrant.has_plugin?("vagrant-vbguest")
-  #   config.vbguest.auto_update = false
-  # end
+  if Vagrant.has_plugin?("vagrant-vbguest")
+    config.vbguest.auto_update = false
+  end
   config.vm.provider "virtualbox" do |v|
 	  v.customize ["modifyvm", :id, "--audio", "none"]
-    v.check_guest_additions = true
+    v.check_guest_additions = false
   end
   
   config.vm.define "bash" do |bash|
