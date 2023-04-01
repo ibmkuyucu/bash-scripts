@@ -2,7 +2,7 @@
 # vi:set ft=ruby sw=2 ts=2 sts=2:
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "debian11"
+  config.vm.box = "debian9"
   config.vm.box_check_update = false
   if Vagrant.has_plugin?("vagrant-vbguest")
     config.vbguest.auto_update = false
